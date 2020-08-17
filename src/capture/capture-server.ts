@@ -71,6 +71,10 @@ export class CaptureServer {
 
                 const stream = fs.createReadStream(`captures/${screenshot.filename}`);
                 reply.send(stream);
+
+                fs.unlink(`captures/${screenshot.filename}`, err => {
+                    console.error(err);
+                });
             } catch (e) {
 
                 if (e instanceof URIError) {
