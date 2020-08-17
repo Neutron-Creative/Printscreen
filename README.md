@@ -10,3 +10,7 @@ Neutron Capture, an open-source page capture server built with <a style="color:#
 
 ## Installation
 Coming soon!
+
+
+## How to use
+API requests must go to /capture

@@ -1,15 +1,10 @@
-import fastifyInit from "fastify";
-import {Routes} from "./api/routes";
+import {CaptureServer} from "./capture/capture-server";
 
-export const fastify = fastifyInit({
-    logger: true
-});
+console.log("Initializing Neutron Capture");
 
-Routes.registerRoutes();
+let server: CaptureServer = new CaptureServer();
 
-fastify.listen(500, (err, address) => {
-    if (err)
-        throw err;
+server.startServer();
+server.registerRoutes();
 
-    fastify.log.info(`Neutron Capture server listening on ${address}`);
-});
+console.log("Neutron Capture is listening for requests!");

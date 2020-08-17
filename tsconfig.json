@@ -13,7 +13,7 @@
     "inlineSources": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": false
   },
   "include": [
     "src"
