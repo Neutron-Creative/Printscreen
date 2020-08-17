@@ -9,8 +9,35 @@ Neutron Capture, an open-source page capture server built with <a style="color:#
 </p>
 
 ## Installation
-Coming soon!
+This documentation is a WIP and is probably not complete in any fashion.
 
+Download this repo, compile the typescript project, and then simply run it like a normal node app.  
+(This will be updated in the future to have more complete instructions.)
 
-## How to use
-API requests must go to /capture
+# REST API Documentation (v1)
+## Capture
+
+Renders a website into an image and then sends the client the file stream.
+
+**URL** `/api/v1/capture?url=x&sizes=x1,x2,x3&variousOptions=x`  
+**Method** `GET`  
+
+**Params**  
+None
+
+**Query Params**  
+`url: String` - Default 100. Limits the number of results for performance reasons.  
+
+`sizes: String[]` - List of strings containing the sizes that should be rendered.  
+Format: WidthxHeight,Width2xHeight2  
+Example: 1920x1080,1280x720
+
+`many options` - There are many options not shown here for brevity. If you want to read more on the various features available, check out <a style="color:#5353EC;" href="https://github.com/sindresorhus/pageres">pageres</a>
+
+**Example**  
+GET /api/v1/capture?url=https://google.com&sizes=400x800&crop=true
+
+**Response**
+```yaml
+'application/octet-stream' file download
+```
