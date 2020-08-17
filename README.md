@@ -17,6 +17,12 @@ Download this repo, compile the typescript project, and then simply run it like 
 # install dependencies
 npm install
 
+# install typescript
+npm install typescript -g
+
+# compile typescript
+tsc
+
 # launch server
 npm run start
 ```

@@ -1,4 +1,7 @@
 import {CaptureServer} from "./capture/capture-server";
+import * as configFile from "./config.json";
+
+export let config = configFile;
 
 console.log("Initializing Neutron Capture");
 

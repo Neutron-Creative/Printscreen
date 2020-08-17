@@ -16,6 +16,7 @@
     "allowJs": false
   },
   "include": [
+    "src/config.json",
     "src"
   ],
   "exclude": [

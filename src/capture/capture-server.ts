@@ -2,6 +2,7 @@ import Pageres from "pageres";
 import {PageResQuery} from "../data/page-res-query";
 import fs from "fs";
 import fastifyInit, {FastifyInstance} from "fastify";
+import {config} from "../App";
 
 export class CaptureServer {
     fastify: FastifyInstance;
@@ -15,7 +16,7 @@ export class CaptureServer {
     startServer() {
         let fastify = this.fastify;
 
-        fastify.listen(500, (err, address) => {
+        fastify.listen(config.port, (err, address) => {
             if (err)
                 throw err;
 
