@@ -52,6 +52,11 @@ export class CaptureServer {
 
                 let query = new PageResQuery(request.query);
 
+                if (!query.url.startsWith("http")) {
+                    reply.type('application/json').code(400);
+                    return {error: "Only http protocol is supported."};
+                }
+
                 let screenshots = await new Pageres(query.options.asObject())
                     .src(query.url, query.sizes)
                     .dest("captures")
