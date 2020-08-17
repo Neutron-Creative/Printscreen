@@ -13,6 +13,14 @@ This documentation is a WIP and is probably not complete in any fashion.
 
 Download this repo, compile the typescript project, and then simply run it like a normal node app.  
 (This will be updated in the future to have more complete instructions.)
+```sh
+# install dependencies
+npm install
+
+# launch server
+npm run start
+```
+
 
 # REST API Documentation (v1)
 ## Capture

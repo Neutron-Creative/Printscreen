@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Captures website screenshots.",
   "scripts": {
-    "start": "node dist/App.js"
+    "start": "node dist/App.js",
+    "preinstall": "npx npm-force-resolutions"
   },
   "keywords": [],
   "author": "Neutron Creative Inc.",
