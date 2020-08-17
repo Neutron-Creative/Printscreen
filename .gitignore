@@ -1,4 +1,7 @@
 dist
 node_modules
+.vim
 .idea
-.vs
+.eclipse
+.atom
+.vscode
