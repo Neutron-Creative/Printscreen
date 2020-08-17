@@ -16,7 +16,7 @@ export class CaptureServer {
     startServer() {
         let fastify = this.fastify;
 
-        fastify.listen(config.port, (err, address) => {
+        fastify.listen(config.port, config.host, (err, address) => {
             if (err)
                 throw err;
 
