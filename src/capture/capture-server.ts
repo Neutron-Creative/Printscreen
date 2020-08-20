@@ -1,8 +1,8 @@
-import Pageres from "pageres";
 import {PageResQuery} from "../data/page-res-query";
 import fs from "fs";
 import fastifyInit, {FastifyInstance} from "fastify";
 import {config} from "../App";
+import Pageres from "pageres";
 
 export class CaptureServer {
     fastify: FastifyInstance;
@@ -73,8 +73,10 @@ export class CaptureServer {
                 reply.send(stream);
 
                 fs.unlink(`captures/${screenshot.filename}`, err => {
-                    console.error(err);
+                    if (err != null)
+                        console.error("Error unlinking file: " + err);
                 });
+
             } catch (e) {
 
                 if (e instanceof URIError) {

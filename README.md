@@ -2,25 +2,43 @@
 <p align="center" style="font-style: italic;color:rgba(0,0,0,.65);font-size: 12px !important;">
 Neutron Capture, an open-source page capture server built with <a style="color:#5353EC;" href="https://github.com/sindresorhus/pageres">pageres</a>
 </p>
+
 <p align="center">
-    <img src="https://img.shields.io/badge/license-GPL-green" />
-    <img src="https://img.shields.io/badge/coverage-0%25-red" />
-    <img src="https://img.shields.io/badge/alpha-0.1.0-orange" />
+    <img src="https://img.shields.io/badge/license-GPL-green?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/Release-v1.0.0-orange?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/Open%20Source-forever-9cf?style=for-the-badge" />
 </p>
 
-## Installation
-This documentation is a WIP and is probably not complete in any fashion.
+<p align="center">
+    <a href="https://twitter.com/neutroncreative">
+        <img src="https://img.shields.io/twitter/follow/neutroncreative?style=for-the-badge" />
+    </a>
+    <a href="https://www.instagram.com/neutroncreative/">
+        <img src="https://img.shields.io/badge/Instagram-Follow%20Us-blue?style=for-the-badge" />
+    </a>
+    <a href="https://www.youtube.com/channel/UCRLlabj3ZUgpx-ArKKHF8TQ">
+        <img src="https://img.shields.io/badge/YouTube-Subscribe%20-red?style=for-the-badge" />
+    </a>
+</p>
 
-Download this repo, compile the typescript project, and then simply run it like a normal node app.  
-(This will be updated in the future to have more complete instructions.)
+<p align="center">
+    <a href="https://www.youtube.com/channel/UCRLlabj3ZUgpx-ArKKHF8TQ">
+        <img width="200" height="64" src="https://i.imgur.com/JtoQm1v.png">
+    </a>
+</p>
+
+
+## Installation
+Installation is a simple process, but requires a few extra steps to work correctly on Linux.
+
 ```sh
 # install dependencies
 npm install
 
-# install chromium packages
+# install chromium packages (Linux only)
 apt-get install ca-certificates fonts-liberation gconf-service libappindicator1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 
-# install typescript
+# install typescript globally
 npm install typescript -g
 
 # compile typescript
@@ -30,31 +48,13 @@ tsc
 npm run start
 ```
 
+## Documentation
 
-# REST API Documentation (v1)
-## Capture
+### Check These Out:
+[The Wiki 📝](https://github.com/Neutron-Creative/capture/wiki) for more information on this project!  
+[Our contribution guidelines 🚀](https://github.com/Neutron-Creative/capture/blob/master/.github/CONTRIBUTING.md) to see how you can contribute to this project!  
+[Our Discord 💬](https://discord.gg/BUbmgV4) if you just want to chat with us! 😃
 
-Renders a website into an image and then sends the client the file stream.
-
-**URL** `/api/v1/capture?url=x&sizes=x1,x2,x3&variousOptions=x`  
-**Method** `GET`  
-
-**Params**  
-None
-
-**Query Params**  
-`url: String` - Default 100. Limits the number of results for performance reasons.  
-
-`sizes: String[]` - List of strings containing the sizes that should be rendered.  
-Format: WidthxHeight,Width2xHeight2  
-Example: 1920x1080,1280x720
-
-`many options` - There are many options not shown here for brevity. If you want to read more on the various features available, check out <a style="color:#5353EC;" href="https://github.com/sindresorhus/pageres">pageres</a>
-
-**Example**  
-GET /api/v1/capture?url=https://google.com&sizes=400x800&crop=true
-
-**Response**
-```yaml
-'application/octet-stream' file download
-```
+### Pageres Fork
+We use a fork instead of the original pageres, meaning there are some differences from us and the upstream.   
+[Please familiarize yourself with it before contributing.](https://github.com/Neutron-Creative/pageres) The documentation can be found [here.](https://github.com/Neutron-Creative/capture/wiki/Differences-from-Pageres)
