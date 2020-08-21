@@ -22,7 +22,7 @@ Neutron Capture, an open-source page capture server built with <a style="color:#
 </p>
 
 <p align="center">
-    <a href="https://www.youtube.com/channel/UCRLlabj3ZUgpx-ArKKHF8TQ">
+    <a href="https://discord.gg/BUbmgV4">
         <img width="200" height="64" src="https://i.imgur.com/JtoQm1v.png">
     </a>
 </p>
