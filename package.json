@@ -1,6 +1,6 @@
 {
   "name": "capture",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Captures website screenshots.",
   "scripts": {
     "start": "node dist/App.js",

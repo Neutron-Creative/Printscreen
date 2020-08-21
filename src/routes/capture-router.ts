@@ -1,47 +1,18 @@
 import {PageResQuery} from "../data/page-res-query";
 import fs from "fs";
-import fastifyInit, {FastifyInstance} from "fastify";
+import {FastifyInstance} from "fastify";
 import {config} from "../App";
 import Pageres from "pageres";
 
-export class CaptureServer {
+export class CaptureRouter implements IRouter {
     fastify: FastifyInstance;
 
-    constructor() {
-        this.fastify = fastifyInit({
-            logger: true
-        });
-    }
-
-    startServer() {
-        let fastify = this.fastify;
-
-        fastify.listen(config.port, config.host, (err, address) => {
-            if (err)
-                throw err;
-
-            this.fastify.log.info(`Neutron Capture server listening on ${address}`);
-        });
+    constructor(fastify: FastifyInstance) {
+        this.fastify = fastify;
     }
 
     registerRoutes() {
         let fastify = this.fastify;
-
-        /**
-         * Index
-         */
-
-        fastify.get('/', async (request, reply) => {
-            reply.type('application/json').code(200);
-
-            return {message: "It's working!"};
-        });
-
-        fastify.get('/favicon.ico', async (request, reply) => {
-            reply.type('application/json').code(200);
-
-            return null;
-        });
 
         /**
          * Capture route
@@ -49,7 +20,6 @@ export class CaptureServer {
 
         fastify.get('/api/v1/capture', async (request, reply) => {
             try {
-
                 let query = new PageResQuery(request.query);
 
                 if (!query.url.startsWith("http")) {
@@ -76,9 +46,7 @@ export class CaptureServer {
                     if (err != null)
                         console.error("Error unlinking file: " + err);
                 });
-
             } catch (e) {
-
                 if (e instanceof URIError) {
 
                     console.error(`URI Error: There was a problem while trying to generate screenshots: ${e}`);
@@ -94,7 +62,6 @@ export class CaptureServer {
                     return {error: e.toString()};
 
                 }
-
             }
         });
     }
