@@ -5,7 +5,7 @@ Neutron Capture, an open-source page capture server built with <a style="color:#
 
 <p align="center">
     <img src="https://img.shields.io/badge/license-GPL-green?style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Release-v1.0.0-orange?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/Release-v1.0.2-orange?style=for-the-badge" />
     <img src="https://img.shields.io/badge/Open%20Source-forever-9cf?style=for-the-badge" />
 </p>
 
