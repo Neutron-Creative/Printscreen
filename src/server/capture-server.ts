@@ -1,16 +1,16 @@
 import {config} from "../App";
-import {FastifyInstance} from "fastify";
+import fastifyInit, {FastifyInstance} from "fastify";
 
 /**
  * The Capture Server contains a Fastify instance and a list of IRouters, which register routes with Fastify.
  */
 export class CaptureServer {
-    fastify: FastifyInstance;
+    fastify = fastifyInit({
+        logger: true
+    });
     routers: IRouter[];
 
-    constructor(fastify: FastifyInstance, routers?: IRouter[]) {
-        this.fastify = fastify;
-
+    constructor(routers?: IRouter[]) {
         if (routers)
             this.routers = routers;
         else

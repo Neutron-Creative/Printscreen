@@ -1,7 +1,6 @@
 import {PageResQuery} from "../data/page-res-query";
 import fs from "fs";
 import {FastifyInstance} from "fastify";
-import {config} from "../App";
 import Pageres from "pageres";
 
 export class CaptureRouter implements IRouter {
