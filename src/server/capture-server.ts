@@ -44,6 +44,8 @@ export class CaptureServer {
         for (let router of this.routers) {
             router.registerRoutes();
         }
+
+        console.log("Neutron Capture is listening for requests!");
     }
 
     registerDefaultRoutes() {

@@ -1,20 +1,26 @@
 /**
  * This represents a query coming in from a user.
  */
-export class PageResQuery {
+import {Constants} from "./constants";
+
+export class PageresQuery {
     url: string;
     sizes: string[];
+    ttl: number = Constants.DEFAULT_TTL;
+    nocache: boolean = false;
     options: Options;
 
     constructor(query: any) {
         if (!query.url)
             throw new URIError("Url parameter must be defined.");
 
-        if (!query.sizes)
-            throw new URIError("Sizes parameter must be defined.");
+        if (!query.size)
+            throw new URIError("Size parameter must be defined.");
 
         this.url = query.url;
-        this.sizes = query.sizes.trim().split(",");
+        this.sizes = [query.size];
+        this.ttl = query.ttl ?? this.ttl;
+        this.nocache = query.nocache ?? this.nocache;
 
         this.options = new Options();
         this.options.delay = query.delay ?? this.options.delay;
@@ -33,6 +39,11 @@ export class PageResQuery {
         this.options.format = query.format ?? this.options.format;
         this.options.userAgent = query.userAgent ?? this.options.userAgent;
         this.options.transparent = query.transparent ?? this.options.transparent;
+
+        // Validate
+        if (this.ttl < 0 || this.ttl > Constants.MAX_TTL) {
+            this.ttl = Constants.DEFAULT_TTL;
+        }
     }
 }
 
