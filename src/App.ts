@@ -1,7 +1,6 @@
 import * as configFile from "./config.json";
 import {CaptureRouter} from "./routes/capture-router";
 import {CaptureServer} from "./server/capture-server";
-import * as Minio from "minio";
 
 export let config = configFile;
 
