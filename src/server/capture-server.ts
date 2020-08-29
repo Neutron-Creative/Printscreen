@@ -35,8 +35,6 @@ export class CaptureServer {
         this.fastify.listen(config.port, config.host, (err, address) => {
             if (err)
                 throw err;
-
-            this.fastify.log.info(`Neutron Capture server listening on ${address}`);
         });
 
         this.registerDefaultRoutes();
