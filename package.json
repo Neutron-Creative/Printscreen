@@ -4,6 +4,7 @@
   "description": "Captures website screenshots.",
   "scripts": {
     "start": "node dist/App.js",
+    "dev": "ts-node --files src/App.ts",
     "version": "auto-changelog && git add CHANGELOG.md"
   },
   "auto-changelog": {
@@ -39,6 +40,7 @@
     "@typescript-eslint/parser": "^3.9.1",
     "auto-changelog": "^2.2.0",
     "eslint": "^7.7.0",
+    "ts-node": "^9.0.0",
     "typescript": "^3.9.7"
   }
 }
