@@ -1,0 +1,10 @@
+captures
+dist
+node_modules
+.vim
+.idea
+.eclipse
+.atom
+.vscode
+.run
+.nuxt
