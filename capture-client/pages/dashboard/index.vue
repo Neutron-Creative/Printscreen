@@ -416,7 +416,7 @@ export default {
 
           if (errMsg.toLowerCase().includes("token was invalid")) {
             clearInterval(this.intervalHandle);
-            return this.$router.push('/logout');
+            await this.$router.push('/logout');
           }
         } else {
           console.error(e);

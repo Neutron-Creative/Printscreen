@@ -59,7 +59,11 @@
 <script>
 import Utils from "~/middleware/utils";
 
+let cancelSource;
+
 export default {
+  middleware: 'unauthenticated',
+
   data() {
     return {
       email: '',
@@ -68,7 +72,14 @@ export default {
     };
   },
 
-  middleware: 'unauthenticated',
+  created() {
+    cancelSource = this.$axios.CancelToken.source();
+  },
+
+  beforeRouteLeave(to, from, next) {
+    cancelSource?.cancel();
+    next();
+  },
 
   methods: {
     async attemptLogin() {
@@ -90,13 +101,13 @@ export default {
         let response = await this.$axios.post('/api/v1/account/login', {
           email: this.email,
           password: this.password
-        });
+        }, {cancelToken: cancelSource.token});
 
         console.log('Login successful');
         Utils.setCookie('singlelink_token', response.data.token, 7);
         this.$store.commit('auth/login', response.data.token);
         this.$nuxt.$loading.finish();
-        return this.$router.push('/dashboard');
+        await this.$router.push('/dashboard');
 
       } catch (e) {
 
@@ -106,10 +117,6 @@ export default {
         this.$nuxt.$loading.finish();
 
       }
-
-    },
-    clear_errors: () => {
-      this.error = null;
     }
   }
 };

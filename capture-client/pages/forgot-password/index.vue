@@ -50,6 +50,7 @@
 </style>
 
 <script>
+let cancelSource;
 
 export default {
   data() {
@@ -57,6 +58,15 @@ export default {
       email: '',
       error: null
     };
+  },
+
+  created() {
+    cancelSource = this.$axios.CancelToken.source();
+  },
+
+  beforeRouteLeave(to, from, next) {
+    cancelSource?.cancel();
+    next();
   },
 
   methods: {
@@ -71,18 +81,19 @@ export default {
       try {
         await this.$axios.post('/api/v1/account/forgot-password', {
           email: this.email
-        });
+        }, {cancelToken: cancelSource.token});
 
-        return this.$router.push("/forgot-password/sent");
+        await this.$router.push("/forgot-password/sent");
       } catch (e) {
-        this.error = "This email doesn't exist!";
+
+        if (e.response.status === 409) {
+          this.error = "You've sent too many emails! You need to wait at least 2 hours before trying again, sorry.";
+        } else {
+          this.error = "This email doesn't exist!";
+        }
 
         this.$nuxt.$loading.finish();
       }
-
-    },
-    clear_errors: () => {
-      this.error = null;
     }
   }
 };

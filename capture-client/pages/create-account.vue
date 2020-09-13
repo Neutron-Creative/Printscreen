@@ -35,7 +35,8 @@
         </button>
       </form>
     </section>
-    <section class="flex text-center text-gray-600 text-sm mt-auto mb-4">All rights reserved.<br>Copyright ©{{new Date().getFullYear()}}
+    <section class="flex text-center text-gray-600 text-sm mt-auto mb-4">All rights reserved.<br>Copyright
+      ©{{ new Date().getFullYear() }}
       Neutron Creative Inc.
     </section>
   </div>
@@ -50,7 +51,11 @@
 <script>
 import Utils from "~/middleware/utils";
 
+let cancelSource;
+
 export default {
+  middleware: 'unauthenticated',
+
   data() {
     return {
       email: '',
@@ -59,27 +64,36 @@ export default {
       error: null
     };
   },
-  middleware: 'unauthenticated',
+
+  created() {
+    cancelSource = this.$axios.CancelToken.source();
+  },
+
+  beforeRouteLeave(to, from, next) {
+    cancelSource?.cancel();
+    next();
+  },
+
   methods: {
     async attemptSignup() {
       this.$nuxt.$loading.start();
 
       if (!this.email) {
         this.error = 'Email address is required to sign up.';
-         this.$nuxt.$loading.finish();
-         return;
+        this.$nuxt.$loading.finish();
+        return;
       }
 
       if (!this.password) {
         this.error = 'Password is required to sign up.';
-         this.$nuxt.$loading.finish();
-         return;
+        this.$nuxt.$loading.finish();
+        return;
       }
 
       if (!this.fullName) {
         this.error = 'Full Name is required to sign up.';
-         this.$nuxt.$loading.finish();
-         return;
+        this.$nuxt.$loading.finish();
+        return;
       }
 
       try {
@@ -88,24 +102,31 @@ export default {
           email: this.email,
           password: this.password,
           fullName: this.fullName
-        });
+        }, {cancelToken: cancelSource.token});
 
         console.log('Account creation successful');
         Utils.setCookie('singlelink_token', response.data.token, 7);
         this.$store.commit('auth/login', response.data.token);
         this.$nuxt.$loading.finish();
-        return this.$router.push('/dashboard');
+        await this.$router.push('/dashboard');
 
       } catch (e) {
 
         console.log(e);
-        this.error = 'Your email or password is incorrect!';
-         this.$nuxt.$loading.finish();
-      }
 
-    },
-    clear_errors: () => {
-      this.error = null;
+        if (e.response.status === 409) {
+
+          this.error = 'An account with this email already exists!';
+          this.$nuxt.$loading.finish();
+
+        } else {
+
+          this.error = 'Something ' +
+            'went wrong while trying to make the account!';
+          this.$nuxt.$loading.finish();
+
+        }
+      }
     }
   }
 };
