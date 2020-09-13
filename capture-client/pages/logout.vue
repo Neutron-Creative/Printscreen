@@ -1,9 +1,9 @@
-<template />
+<template/>
 <script>
-  export default {
-    mounted() {
-      this.$store.commit('auth/logout');
-      this.$router.push('/');
-    }
-  };
+export default {
+  mounted() {
+    this.$store.commit('auth/logout');
+    return this.$router.push('/');
+  }
+};
 </script>

@@ -1,4 +1,4 @@
-import Cookies from "~/middleware/utils";
+import Utils from "~/middleware/utils";
 
 export const state = () => ({
   token: null
@@ -6,7 +6,7 @@ export const state = () => ({
 
 export const getters = {
   get_token(state) {
-    return state.token || Cookies.getCookieValue('capture_token');
+    return state.token || Utils.getCookie('capture_token');
   },
   is_authenticated(state) {
     return state.token != null;
@@ -15,14 +15,14 @@ export const getters = {
 
 export const mutations = {
   login(vuexContext, token) {
-    Cookies.setCookie('capture_token', token, 7);
+    Utils.setCookie('capture_token', token, 7);
     state.token = token;
     vuexContext.token = token;
   },
   logout(vuexContext) {
     state.token = null;
     vuexContext.token = null;
-    Cookies.setCookie('capture_token', '', 7);
+    Utils.setCookie('capture_token', '', 7);
   }
 };
 

@@ -1,7 +1,4 @@
 export default {
-  generate: {
-    fallback: true
-  },
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -16,6 +13,20 @@ export default {
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
+
+  generate: {
+    fallback: true
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    apiUrl: process.env.API_URL || 'http://localhost:5566'
+  },
+
+  loading: {
+    color: '#5353EC',
+    height: '10px'
+  },
 
   head: {
     title: 'Capture by Neutron' || '',
@@ -63,7 +74,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.AXIOS_BASE_URL || 'http://localhost:5566'
+    baseURL: process.env.API_URL || 'http://localhost:5566'
   },
   /*
   ** Build configuration

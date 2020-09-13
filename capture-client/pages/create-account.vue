@@ -29,13 +29,13 @@
           <input class="p-2 mt-2 text-sm border-solid border-gray-300 rounded border" type="text"
                  placeholder="e.g. your full name" v-model="fullName"/>
         </div>
-        <button type="button" @click="attempt_signup"
+        <button type="button" @click="attemptSignup"
                 class="mt-2 w-full p-3 text-center text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded font-semibold tracking-wide uppercase">
           Sign up
         </button>
       </form>
     </section>
-    <section class="flex text-center text-gray-600 text-sm mt-auto mb-4">All rights reserved.</br>Copyright ©2020
+    <section class="flex text-center text-gray-600 text-sm mt-auto mb-4">All rights reserved.<br>Copyright ©{{new Date().getFullYear()}}
       Neutron Creative Inc.
     </section>
   </div>
@@ -48,11 +48,10 @@
 </style>
 
 <script>
-import Cookies from "~/middleware/utils";
+import Utils from "~/middleware/utils";
 
 export default {
-  name: 'Login',
-  data: () => {
+  data() {
     return {
       email: '',
       password: '',
@@ -62,45 +61,46 @@ export default {
   },
   middleware: 'unauthenticated',
   methods: {
-    async attempt_signup() {
+    async attemptSignup() {
       this.$nuxt.$loading.start();
 
       if (!this.email) {
         this.error = 'Email address is required to sign up.';
-        return this.$nuxt.$loading.finish();
+         this.$nuxt.$loading.finish();
+         return;
       }
 
       if (!this.password) {
         this.error = 'Password is required to sign up.';
-        return this.$nuxt.$loading.finish();
+         this.$nuxt.$loading.finish();
+         return;
       }
 
       if (!this.fullName) {
-        this.error = 'Password is required to sign up.';
-        return this.$nuxt.$loading.finish();
+        this.error = 'Full Name is required to sign up.';
+         this.$nuxt.$loading.finish();
+         return;
       }
 
       try {
 
         let response = await this.$axios.post('/api/v1/account/create', {
           email: this.email,
-          password: this.password
+          password: this.password,
+          fullName: this.fullName
         });
 
-        console.log('Login successful');
-        console.log(response);
-        Cookies.setCookie('singlelink_token', response.data.token, 7);
+        console.log('Account creation successful');
+        Utils.setCookie('singlelink_token', response.data.token, 7);
         this.$store.commit('auth/login', response.data.token);
         this.$nuxt.$loading.finish();
         return this.$router.push('/dashboard');
 
       } catch (e) {
 
-        console.log('Login failed');
-        console.log(this.error);
+        console.log(e);
         this.error = 'Your email or password is incorrect!';
-        return this.$nuxt.$loading.finish();
-
+         this.$nuxt.$loading.finish();
       }
 
     },

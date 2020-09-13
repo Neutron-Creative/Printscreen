@@ -1,68 +1,67 @@
 <template>
   <div class="flex flex-col w-full h-full">
+
+    <!-- region Account settings -->
     <div
       class="flex flex-row justify-center items-center bg-white border border-gray-200 border-l-0 border-t-0 border-r-0 w-full p-6 pt-4 pb-4">
       <span class="mr-auto text-xl font-semibold">Account settings</span>
-<!--      <span class="text-gray-700 text-sm">Last updated on 8/14 at 3:23 PM</span>-->
     </div>
-    <div>
 
+    <!--    region Alert Section-->
+    <div v-show="this.alerts.account && this.alerts.accountWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-orange-200 text-orange-600 rounded justify-center items-center
+      text-sm border border-orange-300 shadow-sm ">
+      <img style="width: 12px;" src="/caution.svg" alt="error box image">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.account }}
+      </div>
     </div>
-    <form class="p-6 border border-gray-200 border-t-0 border-l-0 border-r-0 border-b-0 w-full flex flex-col">
+
+    <div v-show="this.alerts.account&& !this.alerts.accountWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-green-200 text-green-600 rounded justify-center items-center
+      text-sm border border-green-300 shadow-sm ">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.account }}
+      </div>
+    </div>
+    <!--    endregion-->
+
+    <div class="p-6 border border-gray-200 border-t-0 border-l-0 border-r-0 border-b-0 w-full flex flex-col">
       <div class="flex flex-row w-full">
         <div class="flex flex-col w-full p-2">
           <label class="mb-2 text-gray-700 text-sm">Full Name</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. Jane Doe"/>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. Jane Doe"
+                 v-model.trim="details.fullName" @input="dirty.account = true"/>
         </div>
         <div class="flex flex-col w-full p-2">
           <label class="mb-2 text-gray-700 text-sm">Company Name</label>
           <input class="p-2 rounded border border-gray-200 text-sm" type="text"
-                 placeholder="e.g. Neutron Creative Inc."/>
-        </div>
-      </div>
-      <div class="flex flex-row w-full">
-        <div class="flex flex-col w-full p-2">
-          <label class="mb-2 text-gray-700 text-sm">Email Address</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text"
-                 placeholder="e.g. jane@neutroncreative.com"/>
+                 placeholder="e.g. Neutron Creative Inc." v-model.trim="details.companyName"
+                 @input="dirty.account = true"/>
         </div>
         <div class="flex flex-col w-full p-2">
           <label class="mb-2 text-gray-700 text-sm">Phone Number</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. (919) 653-0790"/>
-        </div>
-        <div class="flex flex-col w-full p-2">
-          <label class="mb-2 text-gray-700 text-sm">Password</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text"
-                 placeholder="e.g. Your strong password"/>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="tel" placeholder="e.g. (919) 653-0790"
+                 v-model.trim="details.phone" @input="dirty.account = true"/>
         </div>
       </div>
       <div class="flex flex-row w-full">
-        <div class="flex flex-col w-full p-2">
-          <label class="mb-2 text-gray-700 text-sm">Current Plan</label>
-          <select class="p-2 rounded border border-gray-200 text-sm">
-            <option>Free ($0/Month) - Up to 100 captures</option>
-            <option>Basic ($5/Month) - Up to 1000 captures</option>
-            <option>Business ($15/Month) - Up to 10,000 captures</option>
-            <option>Enterprise (Starting at $35/Month) - 100,000 Captures, extras are .0035/capture</option>
-          </select>
-        </div>
-      </div>
-      <div class="flex flex-row w-full">
-        <div class="flex flex-col w-full lg:w-1/4 p-2">
-          <label class="mb-2 text-gray-700 text-sm">Address</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. 901 Sheldon Drive"/>
+        <div class="flex flex-col w-full lg:w-2/4 p-2">
+          <label class="mb-2 text-gray-700 text-sm ">Address</label>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. 901 Sheldon Drive"
+                 v-model.trim="details.address" @input="dirty.account = true"/>
         </div>
         <div class="flex flex-col w-full lg:w-1/4 p-2">
           <label class="mb-2 text-gray-700 text-sm">City</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. Cary"/>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. Cary"
+                 v-model.trim="details.city" @input="dirty.account = true"/>
         </div>
         <div class="flex flex-col w-full lg:w-1/4 p-2">
           <label class="mb-2 text-gray-700 text-sm">Zip Code</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. 27312"/>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="number" placeholder="e.g. 27312"
+                 v-model.trim="details.zipcode" @input="dirty.account = true"/>
         </div>
         <div class="flex flex-col w-full lg:w-1/4 p-2">
           <label class="mb-2 text-gray-700 text-sm">Country</label>
-          <select class="p-2 rounded border border-gray-200 text-sm">
+          <select class="p-2 rounded border border-gray-200 text-sm" v-model="details.country">
             <option value="United States of America">United States of America</option>
             <option value="Afganistan">Afghanistan</option>
             <option value="Albania">Albania</option>
@@ -313,56 +312,873 @@
           </select>
         </div>
       </div>
+
+      <div class="flex flex-col w-full p-2">
+        <label class="mb-2 text-gray-700 text-sm">Change Email Address</label>
+        <input class="p-2 rounded border border-gray-200 text-sm" type="text"
+               placeholder="e.g. jane@neutroncreative.com" v-model.trim="details.email" @input="dirty.account = true"/>
+      </div>
+
+      <button :disabled="!dirty.account" type="button"
+              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right"
+              @click="saveDetails">
+        Save Changes
+      </button>
+    </div>
+    <!-- endregion -->
+
+    <!-- region API Keys settings -->
+    <div
+      class="flex flex-row justify-center items-center bg-white border border-gray-200 border-l-0 border-t-0 border-r-0 w-full p-6 pt-4 pb-4">
+      <span class="mr-auto text-xl font-semibold">API Keys</span>
+    </div>
+
+    <!--    region Alert Section-->
+    <div v-show="this.alerts.apiKey && this.alerts.apiKeyWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-orange-200 text-orange-600 rounded justify-center items-center
+      text-sm border border-orange-300 shadow-sm ">
+      <img style="width: 12px;" src="/caution.svg" alt="error box image">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.account }}
+      </div>
+    </div>
+
+    <div v-show="this.alerts.apiKey && !this.alerts.apiKeyWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-green-200 text-green-600 rounded justify-center items-center
+      text-sm border border-green-300 shadow-sm ">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.account }}
+      </div>
+    </div>
+    <!--    endregion-->
+
+    <div class="p-6 border border-gray-200 border-t-0 border-l-0 border-r-0 border-b-0 w-full flex flex-col">
+      <button type="button"
+              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right"
+              @click="showKeys = !showKeys; ">
+        {{ showKeys ? "Hide" : "Show" }} Keys
+      </button>
+
+      <div v-show="showKeys" id="api-keys">
+        <ul id="api-keys-list" class="flex flex-col w-full">
+          <li class="flex flex-col w-full p-1" v-for="key in apiKeys">
+            <div class="flex flex-row p-2 rounded border border-gray-200 text-lg" type="text">
+              <span class="center mt-auto mb-auto mr-auto">{{ key }}</span>
+              <button
+                class="rounded shadow m-1 mt-2 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right ml-auto"
+                @click="deleteApiKey(key)">
+                Delete
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <button v-show="showKeys"
+              type="button"
+              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right"
+              @click="generateApiKey">
+        Generate API Key
+      </button>
+    </div>
+    <!-- endregion -->
+
+    <!-- region Subscription plan -->
+    <div
+      class="flex flex-row justify-center items-center bg-white border border-gray-200 border-l-0 border-t-0 border-r-0 w-full p-6 pt-4 pb-4">
+      <span class="mr-auto text-xl font-semibold">Subscription plan</span>
+    </div>
+
+    <!--    region Alert Section-->
+    <div v-show="this.alerts.subscription && this.alerts.subscriptionWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-orange-200 text-orange-600 rounded justify-center items-center
+      text-sm border border-orange-300 shadow-sm ">
+      <img style="width: 12px;" src="/caution.svg" alt="error box image">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.subscription }}
+      </div>
+    </div>
+
+    <div v-show="this.alerts.subscription && !this.alerts.subscriptionWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-green-200 text-green-600 rounded justify-center items-center
+      text-sm border border-green-300 shadow-sm ">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.subscription }}
+      </div>
+    </div>
+    <!--    endregion-->
+
+    <div class="p-6 border border-gray-200 border-t-0 border-l-0 border-r-0 border-b-0 w-full flex flex-col">
       <div class="flex flex-row w-full">
         <div class="flex flex-col w-full p-2">
-          <label class="mb-2 text-gray-700 text-sm">Card Number</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. 4242 4242 4242 4242"/>
+          <label class="mb-2 text-gray-700 text-sm">Current Plan</label>
+          <div v-if="!paymentInfo.last4 && selectedPlan.toLowerCase().includes('free')" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-orange-200 text-orange-600 rounded justify-center items-center
+      text-sm border border-orange-300 shadow-sm ">
+            <img style="width: 12px;" src="/caution.svg" alt="error box image">
+            <div class="flex flex-col ml-2">
+              You cannot change your current subscription plan without a valid payment method!
+            </div>
+          </div>
+          <select class="p-2 rounded border border-gray-200 text-sm"
+                  :disabled="!paymentInfo.last4 && selectedPlan.toLowerCase().includes('free')"
+                  @input="selectedPlan = $event.target.options[$event.target.selectedIndex].value; dirty.subscription = true"
+                  ref="currentPlanSelect">
+            <option>Free ($0/Month) - Up to 100 captures</option>
+            <option>Basic ($5/Month) - Up to 1000 captures</option>
+            <option>Business ($15/Month) - Up to 10,000 captures</option>
+            <option>Enterprise (Starting at $35/Month) - 100,000 Captures, extras are .0035/capture</option>
+          </select>
+
+          <span v-show="dirty.subscription"
+                class="p-2 mt-6 rounded border bg-orange-200 border-orange-400 border-orange-200 w-full">
+            You will be billed <b>immediately</b> if you are starting a new subscription.
+            If you are downgrading, your current subscription will last until the end of the billing cycle.
+            If you are upgrading, you will be prorated and billed for the difference at the end of the cycle.
+          </span>
+
+          <br>
+          <div>
+            <span v-if="nextPaymentDate && !cancelAtPeriodEnd"
+                  class="text-gray-600 text-sm">Next payment on {{ this.nextPaymentDate }}</span>
+            <span v-if="nextPaymentDate && cancelAtPeriodEnd" class="text-gray-600 text-sm">
+              Cycle ends on {{ this.nextPaymentDate }}<br>
+              Subscription ending
+          </span>
+          </div>
+
+        </div>
+      </div>
+
+      <button :disabled="!dirty.subscription" type="button"
+              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right"
+              @click="updateSubscription">
+        Update Subscription
+      </button>
+    </div>
+    <!--    endregion-->
+
+    <!-- region Your payment information -->
+    <div
+      class="flex flex-row justify-center items-center bg-white border border-gray-200 border-l-0 border-t-0 border-r-0 w-full p-6 pt-4 pb-4">
+      <span class="mr-auto text-xl font-semibold">Your payment information</span>
+    </div>
+
+    <!--    region Alert Section-->
+    <div v-show="this.alerts.payment && this.alerts.paymentWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-orange-200 text-orange-600 rounded justify-center items-center
+      text-sm border border-orange-300 shadow-sm ">
+      <img style="width: 12px;" src="/caution.svg" alt="error box image">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.payment }}
+      </div>
+    </div>
+
+    <div v-show="this.alerts.payment && !this.alerts.paymentWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-green-200 text-green-600 rounded justify-center items-center
+      text-sm border border-green-300 shadow-sm ">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.payment }}
+      </div>
+    </div>
+    <!--    endregion-->
+
+    <div class="p-6 border border-gray-200 border-t-0 border-l-0 border-r-0 border-b-0 w-full flex flex-col">
+      <div class="flex flex-row w-full">
+        <div class="flex flex-col w-full p-2">
+          <label class="mb-2 text-gray-700 text-sm">Card Number (No spaces or hyphens)</label>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. 4242 4242 4242 4242"
+                 v-model.trim="creditCard.number" @input="dirty.payment = true"/>
         </div>
         <div class="flex flex-col w-full p-2">
-          <label class="mb-2 text-gray-700 text-sm">Expiration Date</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. 03/22"/>
+          <label class="mb-2 text-gray-700 text-sm">Expiration Date (MM/YY)</label>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. MM/YY"
+                 v-model.trim="creditCard.expiration" @input="dirty.payment = true"/>
         </div>
         <div class="flex flex-col w-full p-2">
           <label class="mb-2 text-gray-700 text-sm">Security Code (CVC)</label>
-          <input class="p-2 rounded border border-gray-200 text-sm" type="text" placeholder="e.g. 841"/>
+          <input class="p-2 rounded border border-gray-200 text-sm" type="number" placeholder="e.g. 841"
+                 v-model.number="creditCard.cvc" @input="dirty.payment = true"/>
         </div>
       </div>
-      <button type="button"
-              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right">
-        Save Changes
+
+      <div class="flex flex-row w-full">
+
+        <div class="flex flex-col w-full p-2" v-if="paymentInfo.last4">
+          <label class="mb-2 text-gray-700 text-sm">Saved Card</label>
+          <div class="p-4 rounded border border-gray-400 border-darken-4">
+            <span class="p-2 rounded text-lg" type="text">
+              {{ paymentInfo.brand.toUpperCase() }} <span
+              class="p-2 rounded text-lg float-right">...{{ paymentInfo.last4 }}</span>
+            </span>
+            <br>
+            <span class="p-2 rounded text-lg" type="text">
+            Exp: {{ paymentInfo.exp_month }}/{{ paymentInfo.exp_year }}
+            </span>
+            <br>
+            <button type="button"
+                    class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right float-right"
+                    @click="deleteCard">
+              Delete
+            </button>
+          </div>
+        </div>
+
+
+        <div class="flex flex-col w-full p-2" v-if="!paymentInfo.last4">
+          <label class="mb-2 text-gray-700 text-sm">No payment information saved</label>
+        </div>
+        <div class="flex flex-col w-full p-2">
+        </div>
+        <div class="flex flex-col w-full p-2">
+        </div>
+
+      </div>
+
+      <button :disabled="!dirty.payment" type="button"
+              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right"
+              @click="updateCard">
+        Update Payment Information
       </button>
-    </form>
+    </div>
+    <!--    endregion-->
+
+    <!-- region Sensitive-->
+    <div
+      class="flex flex-row justify-center items-center bg-white border border-gray-200 border-l-0 border-t-0 border-r-0 w-full p-6 pt-4 pb-4">
+      <span class="mr-auto text-xl font-semibold">Change password</span>
+    </div>
+
+    <!--    region Alert Section-->
+    <div v-show="this.alerts.sensitive && this.alerts.sensitiveWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-orange-200 text-orange-600 rounded justify-center items-center
+      text-sm border border-orange-300 shadow-sm ">
+      <img style="width: 12px;" src="/caution.svg" alt="error box image">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.sensitive }}
+      </div>
+    </div>
+
+    <div v-show="this.alerts.sensitive && !this.alerts.sensitiveWarning" class="flex flex-row p-2 mt-4 mb-2 ml-8 mr-8 bg-green-200 text-green-600 rounded justify-center items-center
+      text-sm border border-green-300 shadow-sm ">
+      <div class="flex flex-col ml-2">
+        {{ this.alerts.sensitive }}
+      </div>
+    </div>
+    <!--    endregion-->
+
+    <div class="p-6 border border-gray-200 border-t-0 border-l-0 border-r-0 border-b-0 w-full flex flex-col">
+      <div class="flex flex-col w-full p-2">
+        <label class="mb-2 text-gray-700 text-sm">Change Password</label>
+        <input class="p-2 rounded border border-gray-200 text-sm" type="password"
+               placeholder="e.g. Your strong password" v-model="sensitive.newPassword" @input="dirty.password = true"/>
+      </div>
+      <div class="flex flex-col w-full p-2">
+        <label class="mb-2 text-gray-700 text-sm">Current Password</label>
+        <input class="p-2 rounded border border-gray-200 text-sm" type="password"
+               placeholder="e.g. Your current password" v-model="sensitive.currentPassword"
+               @input="dirty.password = true"/>
+      </div>
+
+      <button :disabled="!dirty.password" type="button"
+              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-indigo-600 hover:bg-indigo-500 font-medium text-sm uppercase tracking-wide text-white mr-right"
+              @click="updatePassword">
+        Update Password
+      </button>
+    </div>
+    <!-- endregion-->
+
+    <!--    region Delete Account-->
+    <div
+      class="flex flex-row justify-center items-center bg-white border border-gray-200 border-l-0 border-t-0 border-r-0 w-full p-6 pt-4 pb-4">
+      <span class="mr-auto text-xl font-semibold">Other</span>
+    </div>
+
+    <div class="p-6 border border-gray-200 border-t-0 border-l-0 border-r-0 border-b-0 w-full flex flex-col">
+      <button type="button"
+              class="rounded shadow m-2 mt-4 p-3 pr-4 pl-4 bg-red-600 hover:bg-red-500 font-medium text-sm uppercase tracking-wide text-white mr-right"
+              @click="deleteAccount">
+        Delete Account
+      </button>
+    </div>
+    <!--    endregion-->
+
   </div>
 </template>
 
 <script>
+let cancelSource;
 
 export default {
-  layout: 'dashboard',
-  mounted() {
-  },
-  data: function () {
+  name: 'DashboardSettings',
+  layout: 'Dashboard',
+
+  data() {
     return {
-      chart: {
-        data: {
-          labels: ['8/20', '8/21', '8/22', '8/23', '8/24', '8/25', '8/26'],
-          datasets: [
-            {
-              data: [29, 21, 32, 18, 38, 39, 23],
-              backgroundColor: 'rgba(83,83,236,.35)',
-              borderColor: 'rgba(83,83,236,.5)',
-            },
-          ]
+      // Subscription info
+      nextPaymentDate: '',
+      cancelAtPeriodEnd: false,
+
+      // API Keys
+      showKeys: false,
+      apiKeys: [],
+
+      // Sensitive information
+      sensitive: {
+        newPassword: '',
+        currentPassword: '',
+      },
+
+      // Account details
+      details: {
+        fullName: '',
+        email: '',
+        companyName: '',
+        phone: '',
+        address: '',
+        city: '',
+        zipcode: '',
+        country: ''
+      },
+
+      // Credit card info
+      creditCard: {
+        number: '',
+        expiration: '',
+        cvc: ''
+      },
+
+      // Payment info
+      paymentInfo: {
+        brand: "",
+        checks: {},
+        country: "",
+        exp_month: 0,
+        exp_year: 0,
+        fingerprint: "",
+        funding: "",
+        generated_from: null,
+        last4: "",
+        networks: {
+          available: [],
+          preferred: null
         },
-        options: {
-          legend: {
-            display: false
-          },
-          responsive: true,
-          maintainAspectRatio: false
+        three_d_secure_usage: {
+          supported: undefined
+        },
+        wallet: null
+      },
+
+      // Current selected plan
+      selectedPlan: 'Free ($0/Month) - Up to 100 captures',
+
+      // Available subscriptions
+      subscriptions: [],
+
+      // Request Builder Alert
+      alerts: {
+        account: '',
+        accountWarning: false,
+        apiKey: '',
+        apiKeyWarning: false,
+        subscription: '',
+        subscriptionWarning: false,
+        sensitive: '',
+        sensitiveWarning: false,
+        payment: '',
+        paymentWarning: false
+      },
+
+      // Dirtied forms that need to be saved
+      dirty: {
+        account: false,
+        subscription: false,
+        payment: false,
+        password: false
+      }
+
+    };
+  },
+
+  created() {
+    cancelSource = this.$axios.CancelToken.source();
+  },
+
+  mounted() {
+    this.loadData();
+  },
+
+  beforeRouteLeave(to, from, next) {
+    cancelSource?.cancel();
+    next();
+  },
+
+  methods: {
+    async loadData() {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+
+        let detailsResponse = await this.$axios.post("/api/v1/account/details", {token: token}, {cancelToken: cancelSource.token});
+        let subInfo = await this.$axios.post("/api/v1/subscription/info", {token: token}, {cancelToken: cancelSource.token});
+        let paymentInfo = await this.$axios.post("/api/v1/account/get-payment", {token: token}, {cancelToken: cancelSource.token});
+        let subs = await this.$axios.post("/api/v1/subscriptions", {cancelToken: cancelSource.token});
+        let keys = await this.$axios.post("/api/v1/apikey/list", {token: token}, {cancelToken: cancelSource.token});
+
+        this.details.fullName = detailsResponse.data["fullName"];
+        this.details.email = detailsResponse.data["email"];
+        this.details.companyName = detailsResponse.data["companyName"];
+        this.details.phone = detailsResponse.data["phone"];
+        this.details.address = detailsResponse.data["address"];
+        this.details.city = detailsResponse.data["city"];
+        this.details.zipcode = detailsResponse.data["zipcode"];
+        this.details.country = detailsResponse.data["country"];
+
+        this.subscriptions = subs.data;
+        this.subscriptions.unshift({
+          id: null,
+          nickname: "Free"
+        });
+
+        let subType = subInfo.data["type"];
+
+        switch (subType.toLowerCase()) {
+          case "free":
+            this.$refs["currentPlanSelect"].selectedIndex = 0;
+            break;
+          case "basic":
+            this.$refs["currentPlanSelect"].selectedIndex = 1;
+            break;
+          case "business":
+            this.$refs["currentPlanSelect"].selectedIndex = 2;
+            break;
+          case "enterprise":
+            this.$refs["currentPlanSelect"].selectedIndex = 3;
+            break;
+          default:
+            this.$refs["currentPlanSelect"].selectedIndex = 0;
+        }
+
+        this.paymentInfo = paymentInfo.data;
+
+        let nextPaymentTimestampInSeconds = subInfo.data["nextPayment"];
+
+        if (nextPaymentTimestampInSeconds) {
+          const date = new Date(nextPaymentTimestampInSeconds * 1000);
+          this.nextPaymentDate = date.toLocaleDateString();
+        } else {
+          this.nextPaymentDate = '';
+        }
+
+        if (subInfo.data["cancelAtPeriodEnd"]) {
+          this.cancelAtPeriodEnd = true;
+        }
+
+
+        this.apiKeys = keys.data.apiKeys ?? [];
+
+      } catch (e) {
+
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
+        }
+
+      }
+    },
+
+    async saveDetails() {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+
+        let payload = {};
+
+        if (this.details.fullName) {
+          payload.fullName = this.details.fullName;
+        }
+
+        if (this.details.email) {
+          payload.email = this.details.email;
+        }
+
+        if (this.details.companyName) {
+          payload.companyName = this.details.companyName;
+        }
+
+        if (this.details.phone) {
+          payload.phone = this.details.phone;
+        }
+
+        if (this.details.address) {
+          payload.address = this.details.address;
+        }
+
+        if (this.details.city) {
+          payload.city = this.details.city;
+        }
+
+        if (this.details.zipcode) {
+          payload.zipcode = this.details.zipcode;
+        }
+
+        if (this.details.country) {
+          payload.country = this.details.country;
+        }
+
+        payload.token = token;
+
+        await this.$axios.post("/api/v1/account/update", payload, {cancelToken: cancelSource.token});
+
+        this.alerts.account = "Your account settings have been saved.";
+        this.alerts.accountWarning = false;
+
+        this.dirty.account = false;
+
+      } catch (e) {
+
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          this.alerts.account = `${e} ${errMsg}`;
+          this.alerts.accountWarning = true;
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
         }
       }
-    };
+    },
+
+    async updateSubscription() {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+
+        let outputMessage = "";
+
+        let payload = {
+          token: token
+        };
+
+        if (this.selectedPlan) {
+
+          let find = this.subscriptions.find(x => {
+            return this.selectedPlan.toLowerCase().includes(x?.nickname.toLowerCase());
+          });
+
+          if (find) {
+            payload.priceId = find.id;
+
+            console.log(payload);
+
+            await this.$axios.post("/api/v1/subscription/set", payload, {cancelToken: cancelSource.token});
+
+            outputMessage += "Subscription successfully updated.";
+
+          } else {
+            this.alerts.subscription = `Couldn't find subscription!`;
+            this.alerts.subscriptionWarning = true;
+
+            return;
+          }
+        }
+
+        this.alerts.subscription = `${outputMessage} Your account settings have been saved.`;
+        this.alerts.subscriptionWarning = false;
+
+        this.dirty.subscription = false;
+
+      } catch (e) {
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          this.alerts.subscription = `${e} ${errMsg}`;
+          this.alerts.subscriptionWarning = true;
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
+        }
+      }
+    },
+
+    async updateCard() {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+        let payload = {
+          creditCard: {},
+          token: token
+        };
+
+        if (!this.creditCard.number ||
+          !this.creditCard.expiration ||
+          !this.creditCard.cvc) {
+
+          this.alerts.payment = "You are missing information in one of the fields! Please fill it out correctly.";
+          this.alerts.paymentWarning = true;
+
+          return;
+        }
+
+        payload.creditCard.number = this.creditCard.number;
+        payload.creditCard.expiration = this.creditCard.expiration;
+        payload.creditCard.cvc = this.creditCard.cvc;
+
+        await this.$axios.post("/api/v1/account/set-payment", payload, {cancelToken: cancelSource.token});
+
+        this.alerts.payment = "Successfully updated your payment information!";
+        this.alerts.paymentWarning = false;
+
+        this.creditCard = {
+          number: '',
+          expiration: '',
+          cvc: ''
+        };
+
+        await this.loadData();
+
+      } catch (e) {
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          this.alerts.payment = `${e} ${errMsg}. Make sure your payment information is correct.`;
+          this.alerts.paymentWarning = true;
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
+        }
+      }
+
+      this.dirty.payment = false;
+    },
+
+    async deleteCard() {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+        let payload = {
+          token: token
+        };
+
+        await this.$axios.post("/api/v1/account/set-payment", payload, {cancelToken: cancelSource.token});
+
+        this.alerts.payment = "Successfully deleted your payment information.";
+        this.alerts.paymentWarning = false;
+
+        await this.loadData();
+
+      } catch (e) {
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          this.alerts.payment = `${e} ${errMsg}`;
+          this.alerts.paymentWarning = true;
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
+        }
+      }
+    },
+
+    async updatePassword() {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+
+        let payload = {
+          token: token
+        };
+
+        if (this.sensitive.currentPassword) {
+          payload.password = this.sensitive.currentPassword;
+
+          if (this.sensitive.newPassword) {
+            payload.newPassword = this.sensitive.newPassword;
+          }
+        }
+
+        await this.$axios.post("/api/v1/account/update", payload, {cancelToken: cancelSource.token});
+
+        this.alerts.sensitive = "Your password has been updated.";
+        this.alerts.sensitiveWarning = false;
+
+        this.dirty.account = false;
+
+      } catch (e) {
+
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          this.alerts.sensitive = `${e} ${errMsg}`;
+          this.alerts.sensitiveWarning = true;
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
+        }
+      }
+
+      this.dirty.password = false;
+    },
+
+    async deleteAccount() {
+      if (confirm("Are you sure you want to delete your account? There is no undo!")) {
+        let token = this.$store.getters["auth/get_token"];
+
+        try {
+
+          let payload = {
+            token: token
+          };
+
+          await this.$axios.post("/api/v1/account/delete", payload, {cancelToken: cancelSource.token});
+          await this.$router.push("/logout");
+
+        } catch (e) {
+
+          if (this.$axios.isCancel(e)) {
+            console.log('Request canceled', e.message);
+            return;
+          }
+
+          if (e.response?.data) {
+            let errMsg = e.response.data.error.toString();
+            console.error(`${e} ${errMsg}`);
+
+            this.alerts.sensitive = `${e} ${errMsg}`;
+            this.alerts.sensitiveWarning = true;
+
+            if (errMsg.toLowerCase().includes("token was invalid")) {
+              clearInterval(this.intervalHandle);
+              return this.$router.push('/logout');
+            }
+          } else {
+            console.error(e);
+          }
+        }
+
+        this.dirty.password = false;
+      }
+    },
+
+    async generateApiKey() {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+        let response = await this.$axios.post("/api/v1/apikey/regenerate", {token: token}, {cancelToken: cancelSource.token});
+
+        if (this.apiKeys)
+          this.apiKeys.push(response.data.apiKey);
+        else
+          this.apiKeys = [response.data.apiKey];
+
+      } catch (e) {
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
+        }
+      }
+    },
+
+    async deleteApiKey(key) {
+      let token = this.$store.getters["auth/get_token"];
+
+      try {
+
+        let payload = {
+          token: token
+        };
+
+        payload.apiKey = key;
+
+        let response = await this.$axios.post("/api/v1/apikey/delete", payload, {cancelToken: cancelSource.token});
+
+        this.apiKeys = this.apiKeys.filter(x => x !== key);
+
+      } catch (e) {
+        if (this.$axios.isCancel(e)) {
+          console.log('Request canceled', e.message);
+          return;
+        }
+
+        if (e.response?.data) {
+          let errMsg = e.response.data.error.toString();
+          console.error(`${e} ${errMsg}`);
+
+          if (errMsg.toLowerCase().includes("token was invalid")) {
+            clearInterval(this.intervalHandle);
+            return this.$router.push('/logout');
+          }
+        } else {
+          console.error(e);
+        }
+      }
+    }
   }
 };
 </script>
@@ -375,5 +1191,20 @@ export default {
 input:checked ~ .toggle__dot {
   transform: translateX(100%);
   @apply bg-indigo-600;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+:disabled {
+  @apply opacity-50;
+  @apply cursor-not-allowed;
 }
 </style>

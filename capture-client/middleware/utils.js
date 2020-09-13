@@ -1,6 +1,6 @@
-export default class Cookies {
+export default class Utils {
 
-  static getCookieValue(a) {
+  static getCookie(a) {
     const b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
     return b ? b.pop() : '';
   }
@@ -13,6 +13,15 @@ export default class Cookies {
       expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+
+  static copyToClipboard(value) {
+    const tempInput = document.createElement("input");
+    tempInput.value = value;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
   }
 
 }

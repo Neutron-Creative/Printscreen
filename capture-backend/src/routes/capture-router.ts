@@ -85,21 +85,19 @@ export class CaptureRouter implements IRouter {
     }
 
     private async takeScreenshot(request: FastifyRequest, reply: FastifyReply) {
+        let query: any = request.query;
+        let pageresQuery = new PageresQuery(query);
+        let hash = ObjectHash.sha1(pageresQuery);
 
-        let query = new PageresQuery(request.query);
-        let hash = ObjectHash.sha1(query);
-
-        if (!query.url.startsWith("http")) {
-            reply.type('application/json').code(HttpStatus.HTTP_STATUS_BAD_REQUEST);
+        if (!pageresQuery.url.startsWith("http")) {
+            reply.type("application/json").code(HttpStatus.HTTP_STATUS_BAD_REQUEST);
             return {error: "Only http protocol is supported."};
         }
 
-        if (!query.nocache && this.bucketEnabled && this.minio) {
-
+        if (!pageresQuery.nocache && this.bucketEnabled && this.minio) {
             let bucketName = config.s3Bucket.bucketName;
 
             try {
-
                 let stats = await this.minio.statObject(bucketName, "imageCache/" + hash);
                 let expires: Date = new Date(Date.parse(JSON.parse(stats.metaData.expires)));
                 let filename: string = stats.metaData.filename;
@@ -108,80 +106,58 @@ export class CaptureRouter implements IRouter {
                 if (expires > date) {
                     console.log(`Pulling from S3 bucket: imageCache/${hash}`);
 
-                    reply.type('application/octet-stream').code(HttpStatus.HTTP_STATUS_BAD_REQUEST);
-                    reply.header('Content-Disposition', `inline; filename=${filename}`);
-
                     let file = `temp/${hash}.png`;
                     await this.minio.fGetObject(bucketName, "imageCache/" + hash, file);
 
                     const stream = fs.createReadStream(file);
+
+                    reply.type('application/octet-stream').code(HttpStatus.HTTP_STATUS_OK);
+                    reply.header('Content-Disposition', `inline; filename=${filename}`);
                     reply.send(stream);
 
                     fs.unlink(file, err => {
                         if (err != null)
                             console.error("Error unlinking cached file: " + err);
                     });
-
-                    return;
                 }
-
             } catch (e) {
-                console.log("No s3 cache found for query: " + hash + ", downloading instead.");
+                console.log("No s3 cache found for pageresQuery: " + hash + ", downloading instead.");
             }
+        }
 
-            let screenshot = (await new Pageres(query.options.asObject())
-                .src(query.url, query.sizes)
-                .dest("captures")
-                .run())[0];
+        let screenshot = (await new Pageres(pageresQuery.options.asObject())
+            .src(pageresQuery.url, pageresQuery.sizes)
+            .dest("captures")
+            .run())[0];
 
-            console.log(`Generated screenshot ${screenshot.filename} ${hash} of length ${screenshot.byteLength}`);
+        console.log(`Generated screenshot ${screenshot.filename} ${hash} of length ${screenshot.byteLength}`);
 
-            reply.type('application/octet-stream').code(HttpStatus.HTTP_STATUS_BAD_REQUEST);
-            reply.header('Content-Disposition', `inline; filename=${screenshot.filename}`);
+        reply.type('application/octet-stream').code(HttpStatus.HTTP_STATUS_OK);
+        reply.header('Content-Disposition', `inline; filename=${screenshot.filename}`);
 
-            let expires = new Date();
-            expires.setSeconds(expires.getSeconds() + query.ttl);
+        const stream = fs.createReadStream(`captures/${screenshot.filename}`);
+        reply.send(stream);
 
-            const stream = fs.createReadStream(`captures/${screenshot.filename}`);
-            reply.send(stream);
-
+        if (!pageresQuery.nocache && this.bucketEnabled && this.minio) {
             console.log("Caching to S3 Bucket");
 
+            let expires = new Date();
+            expires.setSeconds(expires.getSeconds() + pageresQuery.ttl);
+
             await this.minio.fPutObject(
-                bucketName, "imageCache/" + hash,
+                config.s3Bucket.bucketName, "imageCache/" + hash,
                 `captures/${screenshot.filename}`,
                 {
                     "expires": JSON.stringify(expires),
                     "filename": screenshot.filename
                 }
             );
-
-            fs.unlink(`captures/${screenshot.filename}`, err => {
-                if (err != null)
-                    console.error("Error unlinking file: " + err);
-            });
-
-        } else {
-
-            let screenshot = (await new Pageres(query.options.asObject())
-                .src(query.url, query.sizes)
-                .dest("captures")
-                .run())[0];
-
-            console.log(`Generated screenshot ${screenshot.filename} of length ${screenshot.byteLength}`);
-
-            reply.type('application/octet-stream').code(HttpStatus.HTTP_STATUS_BAD_REQUEST);
-            reply.header('Content-Disposition', `inline; filename=${screenshot.filename}`);
-
-            const stream = fs.createReadStream(`captures/${screenshot.filename}`);
-            reply.send(stream);
-
-            fs.unlink(`captures/${screenshot.filename}`, err => {
-                if (err != null)
-                    console.error("Error unlinking file: " + err);
-            });
-
         }
+
+        fs.unlink(`captures/${screenshot.filename}`, err => {
+            if (err != null)
+                console.error("Error unlinking file: " + err);
+        });
 
     }
 }
