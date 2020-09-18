@@ -23,8 +23,8 @@ export class PageresQuery {
         this.nocache = query.nocache ?? this.nocache;
 
         this.options = new Options();
-        this.options.delay = query.delay ?? this.options.delay;
-        this.options.timeout = query.timeout ?? this.options.timeout;
+        this.options.delay = Number.parseFloat(query.delay) ?? this.options.delay;
+        this.options.timeout = Number.parseFloat(query.timeout) ?? this.options.timeout;
         this.options.crop = query.crop ?? this.options.crop;
         this.options.css = query.css ?? this.options.css;
         this.options.script = query.script ?? this.options.script;
@@ -35,7 +35,7 @@ export class PageresQuery {
         this.options.hide = query.hide ?? this.options.hide;
         this.options.username = query.username ?? this.options.username;
         this.options.password = query.password ?? this.options.password;
-        this.options.scale = query.scale ?? this.options.scale;
+        this.options.scale = Number.parseFloat(query.scale) ?? this.options.scale;
         this.options.format = query.format ?? this.options.format;
         this.options.userAgent = query.userAgent ?? this.options.userAgent;
         this.options.transparent = query.transparent ?? this.options.transparent;
