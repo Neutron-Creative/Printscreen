@@ -51,7 +51,7 @@ export default {
 			if(this.screenshots <= 100) return 100;
 			if(this.screenshots <= 1000) return 1000;
 			if(this.screenshots <= 10000) return 10000;
-			if(this.screenshots <= 20000) return 20000;
+			if(this.screenshots <= 20000) return 100000;
 			return 100;
 		}
 	}
