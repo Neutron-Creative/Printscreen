@@ -1,10 +1,22 @@
 <template>
   <div class='leading-relaxed'>
-	<nav style="backdrop-filter:saturate(180%) blur(5px); background:rgba(5,5,5,.85); border-bottom: solid 1px #050505;" class="z-20 flex flex-row shadow-lg items-center justify-center w-full sticky top-0 left-0 right-0 mt-12 h-auto">
+	<a href="https://neutroncreative.com" class="flex flex-row items-center justify-center p-4 md:p-2 bg-black text-white">
+		<span class="flex flex-row text-xs font-medium text-center items-center justify-center">
+			<!-- If exciting -->
+			<!-- <span class="flex mr-2 md:hidden">🎉</span> -->
+			Capture is provided free in our mission to make the world open-source.
+			<!-- If exciting -->
+			<!-- <span class="flex md:hidden ml-2">🎉</span> -->
+		</span>
+		<span class="hidden md:flex mx-4 text-xs text-gray-400">|</span>
+		<span class="hidden md:flex text-xs font-semibold">Learn more 👉</span>
+	</a>
+	<nav style="backdrop-filter:saturate(180%) blur(5px); background:rgba(5,5,5,.85); border-bottom: solid 1px #050505;" class="z-20 flex flex-row shadow-lg items-center justify-center w-full sticky top-0 left-0 right-0 mt-2 h-auto">
 		<div class="flex flex-row items-center justify-center px-10 py-6 w-full max-w-6xl text-white h-auto">
 			<n-link to="/" class="font-extrabold text-lg mr-4 brand" style="letter-spacing:.25px;">Capture</n-link>
 			<div class="nav-links ml-auto text-sm font-medium text-gray-300 space-x-12">
 				<n-link class="brand" to="/">Overview</n-link>
+				<a href="https://neutroncreative.com/community" class="brand">Community</a>
 				<n-link class="brand" to="/pricing">Pricing</n-link>
 				<a class="brand" href="https://app.capture.neutron.so">Login</a>
 				<a href="https://app.capture.neutron.so/create-account" style="font-size:15px; margin-left:4em;" class="text-black font-semibold bg-white rounded px-8 py-3 no-hover hover:bg-gray-200">

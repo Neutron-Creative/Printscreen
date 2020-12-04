@@ -4,11 +4,21 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'www',
+    title: 'Capture | The better free screenshot API',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Capture is the free & open-source screenshots API that makes fetching screenshots for your application simple and easy. built by the team at Neutron Creative.' },
+		{ hid: 'og:type', name: 'og:type', content: 'website' },
+		{ hid: 'og:url', name: 'og:url', content: 'https://capture.neutron.so' },
+		{ hid: 'og:title', name: 'og:title', content: 'Capture | The better free screenshot API' },
+		{ hid: 'og:description', name: 'Capture is the free & open-source screenshots API that makes fetching screenshots for your application simple and easy, built by the team at Neutron Creative.'},
+		{ hid: 'og:image', name: 'og:image', content: 'https://capture.neutron.so/capture-og-image.png' },
+		{ hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+		{ hid: 'twitter:url', name: 'twitter:url', content: 'https://capture.neutron.so' },
+		{ hid: 'twitter:title', name: 'twitter:title', content: 'Capture | The better free screenshot API' },
+		{ hid: 'twitter:description', name: 'twitter:description', content: 'Capture is the free & open-source screenshots API that makes fetching screenshots for your application simple and easy, built by the team at Neutron Creative' },
+		{ hid: 'twitter:image', name: 'twitter:image', content: 'https://capture.neutron.so/capture-og-image.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
