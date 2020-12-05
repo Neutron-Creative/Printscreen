@@ -1,51 +1,99 @@
-<p align="center"><a href="https://neutroncreative.com/"><img src="https://firebasestorage.googleapis.com/v0/b/getneutron-2020.appspot.com/o/Sidebar-brandmark-Black.svg?alt=media&token=d22d814a-6096-4f2c-8667-35d0055f7df3" alt="Neutron Creative logo"></a></p>
-<p align="center" style="font-style: italic;color:rgba(0,0,0,.65);font-size: 12px !important;">
-Neutron Capture, an open-source page capture server built with <a style="color:#5353EC;" href="https://github.com/sindresorhus/pageres">pageres</a>
+<h1 align="center">
+    <br>
+	<br>
+	<img src="www/static/logo-branded.svg" alt="Capture logo" width=200/>
+	<br>
+	<br>
+</h1>
+
+<br>
+
+<h4 align="center">
+	The better free screenshot API, made open-source by the team at Neutron Creative.
+</h4>
+
+<p align="center">
+	<a href="https://github.com/Neutron-Creative/Singlelink/projects/1">
+		<img src="https://img.shields.io/badge/Work%20in%20progress-1.1.0-%2303d2d4" alt="Version">
+	</a>
+	<a href="https://www.gnu.org/licenses/gpl-3.0.en.html">
+		<img src="https://img.shields.io/badge/license-GPL-%236ab04c" alt="License"/>
+	</a>
+	<a href="https://app.capture.neutron.so"/>
+		<img src="https://img.shields.io/badge/Screenshots%20captured-1,000+-%2330336b" alt="Screenshots Captured"/>
+	</a>
+	<a href="https://neutroncreative.com">
+		<img src="https://img.shields.io/badge/-Built%20by%20Neutron%20Creative-%235353EC?logo=data:image/png;base64,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"/>
+	</a>
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/license-GPL-green?style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Release-v1.1.0-orange?style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Open%20Source-forever-9cf?style=for-the-badge" />
+	<a href="https://twitter.com/neutroncreative">
+		<img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/neutroncreative?label=Follow%20us%20on%20Twitter&style=plastic&color=%2323A0EE">
+	</a
+	<a href="https://discord.gg/BUbmgV4">
+		<img src="https://img.shields.io/badge/Join%20our%20community%20on%20Discord-30+-%237289da" alt="Join us on Discord"/>
+	</a>
 </p>
 
 <p align="center">
-    <a href="https://twitter.com/neutroncreative">
-        <img src="https://img.shields.io/twitter/follow/neutroncreative?style=for-the-badge" />
-    </a>
-    <a href="https://www.instagram.com/neutroncreative/">
-        <img src="https://img.shields.io/badge/Instagram-Follow%20Us-blue?style=for-the-badge" />
-    </a>
-    <a href="https://www.youtube.com/channel/UCRLlabj3ZUgpx-ArKKHF8TQ">
-        <img src="https://img.shields.io/badge/YouTube-Subscribe%20-red?style=for-the-badge" />
-    </a>
+	<a href="#what-is-capture">What is Capture?</a> •
+	<a href="#get-started">Get started</a> •
+	<a href="#documenation">Documentation</a> •
+	<a href="#related">Related</a> •
+	<a href="#credits">Credits</a> •
+	<a href="#license">License</a>
 </p>
 
-<p align="center">
-    <a href="https://discord.gg/BUbmgV4">
-        <img width="200" height="64" src="https://i.imgur.com/JtoQm1v.png">
-    </a>
-</p>
+<br>
 
-## Projects
+<h2 id="what-is-capture">What is Capture?</h2>
 
-#### capture-backend
-Backend server that powers Capture
+Capture is an all-in-one screenshot API toolkit consisting of the following:
 
-#### capture-client
-Client for Capture
+- [Capture Backend](https://github.com/Neutron-Creative/Capture/tree/master/capture-backend): The API powering the screenshot service &amp; GUI, based off of [Pageres](https://github.com/sindresorhus/pageres).
+- [Capture Client](https://github.com/Neutron-Creative/Capture/tree/master/capture-client): The client tool, used for monitoring your usage data, building queries via GUI, and managing your API keys.
+- [Capture Website](https://github.com/Neutron-Creative/Capture/tree/master/www): The static website for Capture, hosted at [capture.neutron.so](https://capture.neutron.so).
 
-#### capture-www
-Landing homepage for Capture
+<br>
 
+<h2 id="get-started">Get started</h2>
+The easiest way to get started with Capture is to <a href="https://app.capture.neutron.so/create-account">create an account</a> &amp; utilize <a href="https://capture.neutron.so">Capture Cloud</a>, hosted free by <a href="https://neutroncreative.com/">Neutron Creative</a>.
+<br><br>
+Unfortunately, the documenation for self-hosting Capture hasn't been created yet - but you can help! If you're interested in seeing self-hosting documentation in the near future, please consider making a pull request or sponsoring our organization through Github.
+<br><br>
 
-## Documentation
+<h2 id="documentation">Documentation</h2>
+Documenation is currently incomplete, however you can view our minimal documenation at the <a href="https://github.com/Neutron-Creative/capture/wiki">project wiki</a>.
 
-### Check These Out:
-[The Wiki 📝](https://github.com/Neutron-Creative/capture/wiki) for more information on this project!  
+<br><br>
+
+<h2 id="related">Related</h2>
+
 [Our contribution guidelines 🚀](https://github.com/Neutron-Creative/capture/blob/master/.github/CONTRIBUTING.md) to see how you can contribute to this project!  
 [Our Discord 💬](https://discord.gg/BUbmgV4) if you just want to chat with us! 😃
 
-### Pageres Fork
+#### Pageres Fork
 We use a fork instead of the original pageres, meaning there are some differences from us and the upstream.   
 [Please familiarize yourself with it before contributing.](https://github.com/Neutron-Creative/pageres) The documentation can be found [here.](https://github.com/Neutron-Creative/capture/wiki/Differences-from-Pageres)
+
+<br>
+
+<h2 id="license">License</h2>
+Capture is a free &amp; open-source screenshot tool built by <a href="https://neutroncreative.com/">Neutron Creative Inc.</a>
+<br><br>
+Copyright (C) 2020 <a href="https://neutroncreative.com">Neutron Creative Inc.</a>
+<br><br>
+
+> This program is free software: you can redistribute it and/or modify
+> it under the terms of the GNU General Public License as published by
+> the Free Software Foundation, either version 3 of the License, or
+> (at your option) any later version.
+>
+> This program is distributed in the hope that it will be useful,
+> but WITHOUT ANY WARRANTY; without even the implied warranty of
+> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> GNU General Public License for more details.
+>
+> You should have received a copy of the GNU General Public License
+> along with this program.  If not, see <https://www.gnu.org/licenses/>.
