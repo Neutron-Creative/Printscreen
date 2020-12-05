@@ -2,7 +2,7 @@
 	<div>
 		<section class="flex flex-col items-center justify-center py-16">
 			<div class="w-full max-w-6xl px-16 space-y-4 text-white flex flex-col items-center justify-center text-center">
-				<h1 class="font-extrabold text-6xl leading-tight">Pricing & plans</h1>
+				<h1 class="font-extrabold text-5xl lg:text-6xl leading-tight">Pricing & plans</h1>
 				<p class="mx-auto max-w-2xl text-gray-500 text-lg font-medium pb-4">
 					Compare our features &amp; pricing to find the best plan for your business.
 				</p>
@@ -18,7 +18,7 @@
 						<span>- Soft limits, only $.0035/additional screenshot</span>
 						<span>- Up to {{ limit }} screenshots included</span>
 					</div>
-					<div class="flex flex-col p-10 h-full w-full space-y-5 lg:w-1/2 items-center justify-center text-center">
+					<div class="order-first lg:order-none flex flex-col p-10 h-full w-full space-y-5 lg:w-1/2 items-center justify-center text-center">
 						<div class="flex flex-row items-end justify-center">
 							<span class="text-5xl font-bold leading-tight">${{cost}}</span>
 							<span class="text-2xl text-gray-400">/mo</span>

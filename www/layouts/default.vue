@@ -14,7 +14,8 @@
 	<nav style="backdrop-filter:saturate(180%) blur(5px); background:rgba(5,5,5,.85); border-bottom: solid 1px #050505;" class="z-20 flex flex-row shadow-lg items-center justify-center w-full sticky top-0 left-0 right-0 mt-2 h-auto">
 		<div class="flex flex-row items-center justify-center px-10 py-6 w-full max-w-6xl text-white h-auto">
 			<n-link to="/" class="font-extrabold text-lg mr-4 brand" style="letter-spacing:.25px;">Capture</n-link>
-			<div class="nav-links ml-auto text-sm font-medium text-gray-300 space-x-12">
+			<div class="flex flex-row hidden:lg px-4 py-1 text-sm text-black bg-white rounded ml-auto">Open menu</div>
+			<div class="hidden lg:flex items-center justify-center nav-links ml-auto text-sm font-medium text-gray-300 space-x-12">
 				<n-link class="brand" to="/">Overview</n-link>
 				<a href="https://neutroncreative.com/community" class="brand">Community</a>
 				<n-link class="brand" to="/pricing">Pricing</n-link>
@@ -27,34 +28,34 @@
 	</nav>
     <Nuxt />
 	<footer class="bg-black w-full flex flex-col items-center justify-center text-white">
-		<div class="flex flex-col items-center justify-center w-full max-w-6xl px-8 py-8">
-			<div class="flex flex-col lg:flex-row w-full border border-l-0 border-t-0 border-r-0 border-gray-900 pb-16 mb-8">
-				<div class="flex flex-col items-start justify-start w-full lg:w-1/3">
+		<div class="flex flex-col items-center justify-center w-full max-w-6xl px-8 py-8 text-center lg:text-left">
+			<div class="flex flex-col space-y-4 lg:space-y-0 lg:flex-row w-full border border-l-0 border-t-0 border-r-0 border-gray-900 pb-16 mb-8">
+				<div class="flex flex-col items-center lg:items-start space-y-2 justify-start w-full lg:w-1/3">
 					<n-link class="font-bold brand text-lg" to="/">Capture</n-link>
 					<p class="text-sm text-gray-300">The better free screenshot API</p>
 				</div>
 				<div class="flex flex-col lg:flex-row items-center justify-center w-full lg:w-2/3">
-					<div class="flex flex-col mb-4 lg:mb-0 w-full lg:w-1/3 items-start justify-center">
+					<div class="flex flex-col mb-4 lg:mb-0 w-full lg:w-1/3 items-center lg:items-start justify-center">
 						<span class="uppercase tracking-wider text-sm font-semibold mb-4">Product</span>
-						<div class="nav-links text-sm text-gray-200 space-y-4 flex flex-col items-start justify-center w-full">
+						<div class="nav-links text-sm text-gray-200 space-y-4 flex flex-col items-center lg:items-start justify-center w-full">
 							<a href="#">Overview</a>
 							<a href="#">Pricing</a>
 							<a href="#">Github</a>
 							<a href="#">Documentation</a>
 						</div>
 					</div>
-					<div class="flex flex-col mb-4 lg:mb-0 w-full lg:w-1/3 items-start justify-center">
+					<div class="flex flex-col mb-4 lg:mb-0 w-full lg:w-1/3 items-center lg:items-start justify-center">
 						<span class="uppercase tracking-wider text-sm font-semibold mb-4">Application</span>
-						<div class="nav-links text-sm text-gray-200 space-y-4 flex flex-col items-start justify-center w-full">
+						<div class="nav-links text-sm text-gray-200 space-y-4 flex flex-col items-center lg:items-start justify-center w-full">
 							<a href="#">Login</a>
 							<a href="#">Get started</a>
 							<a href="#">Contact support</a>
 							<a href="#">Account</a>
 						</div>
 					</div>
-					<div class="flex flex-col mb-4 lg:mb-0 w-full lg:w-1/3 items-start justify-center">
+					<div class="flex flex-col mb-4 lg:mb-0 w-full lg:w-1/3 items-center lg:items-start justify-center">
 						<span class="uppercase tracking-wider text-sm font-semibold mb-4">Related</span>
-						<div class="nav-links text-sm text-gray-200 space-y-4 flex flex-col items-start justify-center w-full">
+						<div class="nav-links text-sm text-gray-200 space-y-4 flex flex-col items-center lg:items-start justify-center w-full">
 							<a href="#">Singlelink</a>
 							<a href="#">Neutron</a>
 							<a href="#">WordPress Together</a>
@@ -65,14 +66,14 @@
 			</div>
 			<div class="flex flex-col lg:flex-row w-full items-center justify-center">
 				<div class="flex flex-col space-y-2 items-start justify-center text-xs">
-					<div class="flex flex-col lg:flex-row items-center justify-center space-x-4">
+					<div class="flex flex-col lg:flex-row items-center justify-center space-x-4 w-full lg:w-auto space-y-2 lg:space-y-0">
 						<span>© 2020 Neutron Creative Inc.</span>
 						<a href="#">Privacy Policy</a>
 						<a href="#">Terms of Service</a>
 					</div>
 					<span class="text-gray-600">All product and company names are trademarks or registered trademarks of their respective holders.</span>
 				</div>
-				<div class="flex flex-row items-center justify-center space-x-4 ml-auto icon">
+				<div class="flex flex-row items-center justify-center space-x-4 ml-auto icon w-full lg:w-auto my-4 lg:my-0">
 					<a href="#" class="w-4 h-auto">
 						<img src="https://neutroncreative.com/github-mark.svg"/>
 					</a>
