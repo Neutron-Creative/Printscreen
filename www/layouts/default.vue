@@ -27,8 +27,9 @@
 		</div>
 	</nav>
     <Nuxt />
+	<a class="hidden lg:flex fixed z-10" style="left:20px;bottom:20px;box-shadow:0 5px 15px rgba(0,0,0,.25);" href="https://www.producthunt.com/posts/capture-by-neutron-creative?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-capture-by-neutron-creative" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=278025&theme=light" alt="Capture by Neutron Creative - Web screenshots via API, made easy & open-source. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 	<footer class="bg-black w-full flex flex-col items-center justify-center text-white">
-		<div class="flex flex-col items-center justify-center w-full max-w-6xl px-8 py-8 text-center lg:text-left">
+		<div class="flex flex-col items-center justify-center w-full max-w-6xl px-8 py-8 pb-20 text-center lg:text-left">
 			<div class="flex flex-col space-y-4 lg:space-y-0 lg:flex-row w-full border border-l-0 border-t-0 border-r-0 border-gray-900 pb-16 mb-8">
 				<div class="flex flex-col items-center lg:items-start space-y-2 justify-start w-full lg:w-1/3">
 					<n-link class="font-bold brand text-lg" to="/">Capture</n-link>
