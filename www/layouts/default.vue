@@ -75,13 +75,13 @@
 					<span class="text-gray-600">All product and company names are trademarks or registered trademarks of their respective holders.</span>
 				</div>
 				<div class="flex flex-row items-center justify-center space-x-4 ml-auto icon w-full lg:w-auto my-4 lg:my-0">
-					<a href="#" class="w-4 h-auto">
+					<a href="https://github.com/Neutron-Creative/Capture" class="w-4 h-auto">
 						<img src="https://neutroncreative.com/github-mark.svg"/>
 					</a>
-					<a href="#" class="w-4 h-auto">
+					<a href="https://discord.gg/3pBM4Px" class="w-4 h-auto">
 						<img src="https://neutroncreative.com/discord-mark.svg"/>
 					</a>
-					<a href="#" class="w-4 h-auto">
+					<a href="https://twitter.com/neutroncreative" class="w-4 h-auto">
 						<img src="https://neutroncreative.com/twitter-mark.svg"/>
 					</a>
 				</div>
