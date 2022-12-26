@@ -23,4 +23,16 @@
 
 ----
 
-<p align="center">More content coming soon.</p>
+> Coming soon
+
+## Getting started
+1. First clone the repository
+2. Go to the project folder
+3. Install packages with npm
+4. Set up your .env file
+5. Start your server
+```bash
+tsc;
+npm run start
+```
+6. Download your first screenshot

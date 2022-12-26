@@ -1,7 +1,7 @@
 import {PageresQuery} from "../data/pageres-query";
 import fs from "fs";
 import {FastifyInstance, FastifyRequest, FastifyReply} from "fastify";
-import Pageres from "pageres";
+import Pageres from 'pageres';
 import * as ObjectHash from "object-hash";
 import * as Minio from "minio";
 import {config} from "../App";
@@ -75,7 +75,7 @@ export class CaptureRouter implements IRouter {
                     console.error(`There was a problem while trying to generate screenshots: ${e}`);
 
                     reply.type('application/json').code(HttpStatus.HTTP_STATUS_BAD_REQUEST);
-                    return {error: e.toString()};
+                    return {error: (e as any).toString()};
 
                 }
 

@@ -29,7 +29,7 @@
     "fastify": "^3.2.1",
     "minio": "^7.0.16",
     "object-hash": "^2.0.3",
-    "pageres": "github:neutron-creative/pageres#master",
+    "pageres": "6.3.1",
     "utf-8-validate": "^5.0.2"
   },
   "devDependencies": {
