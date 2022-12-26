@@ -9,3 +9,4 @@ node_modules
 .run
 .nuxt
 www/dist
+package-lock.json

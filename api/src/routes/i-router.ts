@@ -1,3 +1,0 @@
-interface IRouter {
-    registerRoutes(): void;
-}
