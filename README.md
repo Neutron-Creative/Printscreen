@@ -1,6 +1,5 @@
 <h1 align="center">
-	<img src="gh-logo.svg" alt="Printscreen logo" width=300/>
-	<br><br>
+	<img src="gh-logo.svg" alt="Printscreen logo" width=300 style="margin-bottom:12px;margin-top: 24px;"/><br>
 	Printscreen, the open-source website screenshot API.
 </h1>
 
