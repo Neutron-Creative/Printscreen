@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col w-screen min-h-screen">
     <nav
-      class="sticky top-0 z-50 flex flex-row p-3 border border-l-0 border-r-0 border-t-0 border-gray-800 bg-gray-900 items-center justify-center">
+      class="sticky top-0 z-50 flex flex-row p-3 border border-l-0 border-r-0 border-t-0  items-center justify-center" style="background:#F9F6EF;border-color:#cec8bb;">
       <div class="w-full max-w-6xl flex-row flex">
         <n-link to="/dashboard" aria-current="page"
                 class="mr-auto flex items-center justify-center nuxt-link-exact-active nuxt-link-active">
-          <span class="text-xl font-bold text-white">Printscreen</span>
+          <img src="/printscreen-logo.svg" style="height:30px;" class="w-auto"/>
         </n-link>
         <ul class="w-full flex flex-row text-gray-300 text-sm items-center justify-end">
           <n-link to="/dashboard" aria-current="page" :class="getActiveStyles('dashboard')">
@@ -47,6 +47,11 @@ html {
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 *,
 *::before,
 *::after {
@@ -86,10 +91,9 @@ export default {
 
   methods: {
     getActiveStyles(page) {
-      let styles = 'p-2 pl-4 pr-4 ml-4 hover:bg-gray-800 hover:text-white text-gray-400 cursor-pointer rounded';
+      let styles = 'p-2 pl-4 pr-4 ml-4 font-medium text-gray-600 cursor-pointer';
       if (page === this.active) {
-        styles = styles.replace('text-gray-400', '');
-        styles += ' text-white rounded bg-gray-800 font-medium hover:bg-gray-800';
+        styles = styles.replace('font-medium text-gray-600', 'font-semibold text-black');
       }
       if (page === 'dashboard') styles += ' ml-auto';
       return styles;

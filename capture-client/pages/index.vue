@@ -1,7 +1,8 @@
 <template>
   <div class="flex flex-col items-center justify-center bg-gray-100 min-h-screen">
     <section class="flex items-center justify-center flex-col mt-auto w-screen">
-      <h1 class="font-semibold text-3xl mt-2">Sign in to Printscreen</h1>
+      <img src="/printscreen-logo.svg" style="width: auto; height: 22px;margin-bottom: 16px;"/>
+      <h1 class="font-semibold text-3xl mt-2">Log in to your account</h1>
       <p class="text-gray-700 text-sm">Or, <a class="text-indigo-600 hover:text-indigo-700" href="/create-account">create
         your new account for free</a></p>
       <div v-if="this.error"
@@ -38,7 +39,8 @@
           </div>
         </div>
         <button type="button" @click="attemptLogin"
-                class="mt-2 w-full p-3 text-center text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded font-semibold tracking-wide uppercase">
+            style="background: linear-gradient(180deg, #7040ff, #5100ff);"
+                class="mt-2 w-full p-3 text-center text-sm text-white hover:scale-105 hover:transform rounded font-medium tracking-wide">
           Login
         </button>
       </form>

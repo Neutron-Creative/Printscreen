@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center bg-gray-100 min-h-screen">
     <section class="flex items-center justify-center flex-col mt-auto w-screen">
+      <img src="/printscreen-logo.svg" style="width: auto; height: 22px;margin-bottom: 16px;"/>
       <h1 class="font-semibold text-3xl mt-2">Get started for free</h1>
       <p class="text-gray-700 text-sm">
         Already have an Printscreen account?
@@ -30,8 +31,9 @@
                  placeholder="e.g. your full name" v-model="fullName"/>
         </div>
         <button type="button" @click="attemptSignup"
-                class="mt-2 w-full p-3 text-center text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded font-semibold tracking-wide uppercase">
-          Sign up
+            style="background: linear-gradient(180deg, #7040ff, #5100ff);"
+                class="mt-2 w-full p-3 text-center text-sm text-white hover:scale-105 hover:transform rounded font-medium tracking-wide">
+          Create your free account
         </button>
       </form>
     </section>
