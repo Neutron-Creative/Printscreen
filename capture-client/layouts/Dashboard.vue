@@ -11,9 +11,9 @@
           <n-link to="/dashboard" aria-current="page" :class="getActiveStyles('dashboard')">
             <li>Dashboard</li>
           </n-link>
-          <n-link to="/dashboard/settings" :class="getActiveStyles('dashboard-settings')">
-            <li>Settings</li>
-          </n-link>
+          <a href="https://billing.stripe.com/p/login/fZe15hfMU1QYeKAcMM" :class="getActiveStyles('dashboard-settings')">
+            <li>Billing</li>
+          </a>
           <n-link to="/logout" :class="getActiveStyles('logout')">
             <li>Logout</li>
           </n-link>
