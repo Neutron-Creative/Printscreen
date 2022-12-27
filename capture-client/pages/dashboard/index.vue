@@ -74,35 +74,11 @@
     </div>
     <!-- endregion -->
 
-    <!--  region User Statistics Section-->
-    <div
-      class="flex flex-row justify-center items-center bg-white border border-gray-200 border-l-0 border-r-0 w-full p-6 pt-4 pb-4">
-      <span class="mr-auto text-xl font-semibold">Statistics</span>
-      <span class="text-gray-700 text-sm">{{ this.getFirstDay }} - {{ this.getLastDay }}</span>
-    </div>
-
     <div class="flex flex-row">
-      <!--      Chart -->
-      <div class="w-full lg:w-2/3 p-6 border border-gray-200 border-t-0 border-l-0">
-        <span class="text-gray-700 text-sm">Requests by day</span>
-        <bar-chart ref="request-chart" chart-id="request-chart" :chartdata="requestChart.data"
-                   :options="requestChart.options"
-                   style="height: 225px;" class="mt-2"/>
-      </div>
 
       <!--      Usage Stats-->
-      <div class="flex flex-col w-full lg:w-1/3">
-
+      <div class="flex flex-row w-full">
         <div class="w-full p-6 border border-gray-200 border-t-0 border-l-0">
-          <div class="flex flex-row items-center mb-2">
-            <span class="text-gray-700 text-sm">Total captures</span>
-          </div>
-          <div class="flex flex-row items-center">
-            <span class="text-indigo-600 text-2xl mr-auto">
-              {{ this.statistics.totalCaptures }}
-            </span>
-          </div>
-          <br>
           <div class="flex flex-row items-center mb-2">
             <span class="text-gray-700 text-sm">Total requests</span>
           </div>
@@ -111,7 +87,8 @@
               {{ this.statistics.totalRequests }}
             </span>
           </div>
-          <br>
+          </div>
+          <div class="w-full p-6 border border-gray-200 border-t-0 border-l-0">
           <div class="flex flex-row items-center mb-2">
             <span class="text-gray-700 text-sm">Average captures per day</span>
           </div>
@@ -120,7 +97,8 @@
               {{ this.averageArray(this.statistics.captureMonthlyData) }}
             </span>
           </div>
-          <br>
+        </div>
+        <div class="w-full p-6 border border-gray-200 border-t-0 border-l-0">
           <div class="flex flex-row items-center mb-2">
             <span class="text-gray-700 text-sm">Average requests per day</span>
           </div>
@@ -130,7 +108,6 @@
             </span>
           </div>
         </div>
-
       </div>
     </div>
     <!--    endregion-->
