@@ -5,7 +5,7 @@
       <div class="w-full max-w-6xl flex-row flex">
         <n-link to="/dashboard" aria-current="page"
                 class="mr-auto flex items-center justify-center nuxt-link-exact-active nuxt-link-active">
-          <span class="text-xl font-bold text-white">Capture</span>
+          <span class="text-xl font-bold text-white">Printscreen</span>
         </n-link>
         <ul class="w-full flex flex-row text-gray-300 text-sm items-center justify-end">
           <n-link to="/dashboard" aria-current="page" :class="getActiveStyles('dashboard')">

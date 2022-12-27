@@ -29,7 +29,7 @@ export default {
   },
 
   head: {
-    title: 'Capture by Neutron' || '',
+    title: 'Printscreen' || '',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},

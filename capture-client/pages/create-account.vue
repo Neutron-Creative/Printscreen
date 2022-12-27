@@ -3,7 +3,7 @@
     <section class="flex items-center justify-center flex-col mt-auto w-screen">
       <h1 class="font-semibold text-3xl mt-2">Get started for free</h1>
       <p class="text-gray-700 text-sm">
-        Already have an Capture account?
+        Already have an Printscreen account?
         <a class="text-indigo-600 hover:text-indigo-700" href="/">Sign in.</a>
       </p>
       <div v-if="this.error"

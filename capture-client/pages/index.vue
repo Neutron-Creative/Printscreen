@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center bg-gray-100 min-h-screen">
     <section class="flex items-center justify-center flex-col mt-auto w-screen">
-      <h1 class="font-semibold text-3xl mt-2">Sign in to Capture</h1>
+      <h1 class="font-semibold text-3xl mt-2">Sign in to Printscreen</h1>
       <p class="text-gray-700 text-sm">Or, <a class="text-indigo-600 hover:text-indigo-700" href="/create-account">create
         your new account for free</a></p>
       <div v-if="this.error"
