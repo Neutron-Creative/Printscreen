@@ -454,12 +454,10 @@ export default {
 
         let token = this.$store.getters["auth/get_token"];
         let subResponse = await this.$axios.post("/api/v1/apikey/list", {token: token}, {cancelToken: cancelSource.token});
-
         let apiKeys = subResponse.data["apiKeys"];
-
         if (apiKeys.length > 0) {
 
-          let apiKey = apiKeys[0].apiKey;
+          let apiKey = apiKeys[0];
           let apiUrl = process.env.apiUrl;
 
           if (!this.requestBuilder.url) {
